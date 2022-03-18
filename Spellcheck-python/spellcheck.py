@@ -52,12 +52,12 @@ def main():
             print(str(wordCount) + " words not found." + " Took " + str(endTime - startTime) + " seconds")
         elif selection == "4":
             wordCount = 0
-            for words in aliceWords:
-                startTime = time.perf_counter()
+            startTime = time.perf_counter()
+            for words in aliceWords:    
                 index = binarySearch(dictionary, words.lower())
                 if index == -1:
                     wordCount += 1
-                endTime = time.perf_counter()
+            endTime = time.perf_counter()
             print(str(wordCount) + " words not found." + " Took " + str(endTime - startTime) + " seconds")
         elif selection == "5":
             print("Program Closed")
