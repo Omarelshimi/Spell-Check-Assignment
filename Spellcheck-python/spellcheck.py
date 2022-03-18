@@ -3,7 +3,6 @@
 # 1: dictionary: a list containing all of the words from "dictionary.txt"
 # 2: aliceWords: a list containing all of the words from "AliceInWonderland.txt"
 
-from operator import truediv
 import re  # Needed for splitting text with a regular expression
 import time
 
@@ -11,7 +10,6 @@ def main():
     # Load data files into lists
     dictionary = loadWordsFromFile("data-files/dictionary.txt")
     aliceWords = loadWordsFromFile("data-files/AliceInWonderLand.txt")
-
     loop = True
     while loop:
         print(f'''
@@ -45,11 +43,22 @@ def main():
                 print("Position " + str(index) + " Took " + str(endTime - startTime) + " seconds")
         elif selection == "3":
             wordCount = 0
+            startTime = time.perf_counter()
             for words in aliceWords:
                 index = linearSearch(dictionary, words.lower())
                 if index == -1:
                     wordCount += 1
-            print(wordCount)
+            endTime = time.perf_counter()
+            print(str(wordCount) + " words not found." + " Took " + str(endTime - startTime) + " seconds")
+        elif selection == "4":
+            wordCount = 0
+            for words in aliceWords:
+                startTime = time.perf_counter()
+                index = binarySearch(dictionary, words.lower())
+                if index == -1:
+                    wordCount += 1
+                endTime = time.perf_counter()
+            print(str(wordCount) + " words not found." + " Took " + str(endTime - startTime) + " seconds")
         elif selection == "5":
             print("Program Closed")
             loop = False                       
