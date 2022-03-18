@@ -24,15 +24,32 @@ def main():
         ''')
         selection = input("Type a number corresponding with it's option please: ")
         if selection == "1":
-            dictionaryLs()
+            word = input("Please enter a word: ")
+            startTime = time.perf_counter()
+            index = linearSearch(dictionary, word)
+            if index == -1:
+                endTime = time.perf_counter()
+                print("Not Found")
+            else:
+                endTime = time.perf_counter()
+                print("Position " + str(index) + " Took " + str(endTime - startTime) + " seconds") 
         elif selection == "2":
-            dictionaryBs()
+            word = input("Please enter a word: ")
+            startTime = time.perf_counter()
+            index = binarySearch(dictionary, word)
+            if index == -1:
+                endTime = time.perf_counter()
+                print("Not Found")
+            else:
+                endTime = time.perf_counter()
+                print("Position " + str(index) + " Took " + str(endTime - startTime) + " seconds")
         elif selection == "3":
-            words = 0
-            for index in dictionary:
-                if index == aliceWords:
-                    words += 1
-                    print("Number of words found: " + words)
+            wordCount = 0
+            for words in aliceWords:
+                index = linearSearch(dictionary, words.lower())
+                if index == -1:
+                    wordCount += 1
+            print(wordCount)
         elif selection == "5":
             print("Program Closed")
             loop = False                       
@@ -66,27 +83,6 @@ def binarySearch(anArray, item):
         else:
             lowerIndex = middleIndex + 1
     return -1
-
-def dictionaryLs(dictionary, word):
-    word = input("Please enter a word: ")
-    startTime = time.perf_counter()
-    index = linearSearch(dictionary, word)
-    if index == -1:
-        endTime = time.perf_counter()
-        print("Not Found")
-    else:
-        endTime = time.perf_counter()
-        print("Position " + str(index) + " Took " + str(endTime - startTime) + " seconds") 
-def dictionaryBs(dictionary, word):
-    word = input("Please enter a word: ")
-    startTime = time.perf_counter()
-    index = binarySearch(dictionary, word)
-    if index == -1:
-        endTime = time.perf_counter()
-        print("Not Found")
-    else:
-        endTime = time.perf_counter()
-        print("Position " + str(index) + " Took " + str(endTime - startTime) + " seconds")
 
 # Call main() to begin program
 main()
